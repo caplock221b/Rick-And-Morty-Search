@@ -8,7 +8,7 @@ const Modal = ({ info, onClose }) => {
             <div className="modal">
                 <span className="close" onClick={onClose}></span>
                 <div className="info">
-                    <img src={info.image} alt={`${info.name} Character Image`}/>
+                    <img src={info.image} alt={`${info.name} Character`}/>
                     <div className="nameAndStatus">
                         <p className="name">{ info.name }</p>
                         <span className={`dot ${color}`} />

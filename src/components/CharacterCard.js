@@ -29,7 +29,7 @@ const CharacterCard = ({ info, onCardClick }) => {
     return (
         <div className={`${showImage ? "card" : "hideCard"  }`} ref={placeholder} onClick={() => onCardClick(info)}>
             {
-                showImage && <img src={info.image} alt={`${info.name} Character Image`} />
+                showImage && <img src={info.image} alt={`${info.name} Character`} />
             }
             <p className="name">{ info.name }</p>
             <span className={`dot ${color}`} />
