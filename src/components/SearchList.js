@@ -15,7 +15,7 @@ const SearchList = () => {
         if(search){
             axios.get(`https://rickandmortyapi.com/api/character/?name=${search}&page=1`)
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 setError(false)
                 setContacts(res.data.results)
                 setNextAPI(res.data.info.next)
@@ -35,7 +35,7 @@ const SearchList = () => {
     const loadMoreHandler = () => {
         axios.get(`${nextAPI}`)
         .then(res => {
-            console.log(res.data)
+            // console.log(res.data)
             setContacts([...contacts, ...res.data.results])
             setNextAPI(res.data.info.next)
         })
@@ -43,7 +43,7 @@ const SearchList = () => {
     }
 
     const openCharacterModal = info => {
-        console.log(info)
+        // console.log(info)
         setModalInfo(info)
         setModalOpen(true)
     }
