@@ -1,38 +1,343 @@
-.App {
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --gray: #81888f;
+  --bg-clr: #f5f6f8;
+  --green: #00dd74;
+  --red: #ff0000;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-clr);
+  width: 100%;
+  font-family: "Roboto", Times, serif;
+  max-width: 1800px;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header {
+  font-weight: 700;
+  font-size: 2.5rem;
+  letter-spacing: 0.1rem;
+  margin-top: 1em;
   text-align: center;
+  padding: 0 1em;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.mainContainer {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  height: 100%;
+  margin-bottom: 2em;
 }
 
-.App-link {
-  color: #61dafb;
+.inputContainer {
+  width: 400px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.input {
+  margin: 1em 0;
+  padding: 0.8em 1em;
+  background-color: var(--white);
+  width: 100%;
+  font-size: 1.1rem;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  position: relative;
+  z-index: 0;
+}
+
+.listContainer {
+  width: 80%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5em;
+}
+
+.error {
+  text-align: center;
+  width: 400px;
+  background-color: var(--white);
+  padding: 1em;
+  margin: 0.1em 0;
+  border-radius: 5px;
+}
+
+.card {
+  width: 95%;
+  background-color: var(--white);
+  margin: 0.1em 0;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: opacity 2s ease-in-out forwards;
+  opacity: 1;
+}
+
+.hideCard {
+  opacity: 0;
+}
+
+.card > img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.card > .name {
+  margin-left: 1em;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 0.5em;
+  display: inline-block;
+}
+
+.card > .dot {
+  margin-left: auto;
+}
+
+.status {
+  font-size: 0.9rem;
+}
+
+.species {
+  font-size: 0.9rem;
+}
+
+.green {
+  background-color: var(--green);
+}
+
+.red {
+  background-color: var(--red);
+}
+
+.gray {
+  background-color: var(--gray);
+}
+
+.card > .species,
+.nameAndStatus > .species {
+  margin-left: 0.5em;
+}
+
+.load-more {
+  outline: none;
+  padding: 0.5em 1.5em;
+  font-size: 1.15rem;
+  margin: 1em;
+  background-color: var(--white);
+  border: 3px solid var(--green);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.load-more:hover {
+  background-color: var(--green);
+  color: var(--white);
+}
+
+.modalContainer {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  transform: translate(-50%, -50%);
+  background-color: var(--white);
+  border-radius: 10px;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2em 1em;
+}
+
+.info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 1.5em;
+  width: 90%;
+  border-bottom: 2px solid var(--gray);
+}
+
+.info > img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.nameAndStatus {
+  margin-left: 4em;
+}
+
+.nameAndStatus > .name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+}
+
+.nameAndStatus > .status,
+.nameAndStatus > .species {
+  font-size: 1.2rem;
+  color: var(--gray);
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 70%;
+  margin-top: 0.5em;
+}
+
+.content > div {
+  margin: 1em 0;
+}
+
+.content > div > p {
+  font-size: 0.95rem;
+  margin-bottom: 0.2em;
+  color: var(--gray);
+}
+
+.content > div > span {
+  font-size: 1.15rem;
+  color: var(--black);
+}
+
+.close {
+  position: absolute;
+  top: 1em;
+  right: 2em;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.close::before,
+.close::after {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 0;
+  width: 25px;
+  height: 2px;
+  border-radius: 100px;
+  background-color: var(--gray);
+}
+
+.close::before {
+  transform: rotate(45deg);
+}
+
+.close::after {
+  transform: rotate(-45deg);
+}
+
+@media (max-width: 1024px) {
+  .listContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media (max-width: 520px) {
+  .modal {
+    width: 335px;
+  }
+
+  .info {
+    flex-direction: column;
+    margin-top: 1em;
+  }
+
+  .nameAndStatus {
+    margin: 1em 0 0 0;
+  }
+
+  .content {
+    width: 80%;
+  }
+}
+
+@media (max-width: 500px) {
+  .card > .name {
+    font-size: 1rem;
+  }
+  .card > img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .status {
+    font-size: 0.8rem;
+  }
+
+  .species {
+    font-size: 0.8rem;
+  }
+
+  .load-more {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .header {
+    font-size: 2rem;
+  }
+
+  .listContainer {
+    width: 95%;
+  }
+
+  .error {
+    width: 320px;
+  }
+
+  .inputContainer {
+    width: 90%;
   }
 }
